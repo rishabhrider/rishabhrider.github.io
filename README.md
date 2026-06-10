@@ -1,6 +1,6 @@
 # DecideWise AI — GitHub Pages Landing Website
 
-This folder contains a static, GitHub-Pages-ready landing website for **DecideWise AI**, founded by **Rishabh Athiya**.
+This folder contains a static, GitHub-Pages-ready landing website for **DecideWise AI**, founded by **Rishabh Athiya**. The site now includes Zoho Forms-ready modal behavior for early-access, demo, and founder-contact requests.
 
 ## Files included
 
@@ -41,3 +41,12 @@ python -m http.server 8000
 ```
 
 Then visit `http://localhost:8000`.
+
+
+## Latest interaction updates
+
+- **Request Early Access** opens a professional early-access form/modal.
+- **Book an Early Demo** opens a demo-request form/modal.
+- **Contact Founder** opens a contact form/modal instead of triggering the phone dialer.
+- Mobile number actions copy the number instead of auto-opening `tel:` links, preventing blocked-content browser errors.
+- The site is ready for Zoho Forms. See `ZOHO_FORMS_SETUP.md` for where to paste your Zoho Form URLs.
