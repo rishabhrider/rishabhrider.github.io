@@ -1,52 +1,64 @@
-# DecideWise AI — GitHub Pages Landing Website
+# DecideWise AI
 
-This folder contains a static, GitHub-Pages-ready landing website for **DecideWise AI**, founded by **Rishabh Athiya**. The site now includes Zoho Forms-ready modal behavior for early-access, demo, and founder-contact requests.
+**DecideWise AI** is an AI-powered decision intelligence copilot for meetings, founded by **Rishabh Athiya**.
 
-## Files included
+The product helps teams move beyond ordinary meeting summaries by extracting decisions, identifying rationale, detecting missing risks, tracking action items, and suggesting more practical alternatives after important discussions.
 
-- `index.html` — main landing page
-- `privacy.html` — privacy policy page
-- `terms.html` — terms page
-- `CNAME` — custom domain file for GitHub Pages (`decidewiseai.me`)
-- `.nojekyll` — prevents Jekyll processing issues
-- `robots.txt` and `sitemap.xml` — basic SEO files
-- `DEPLOYMENT.md` — GitHub Pages + Namecheap setup instructions
+## Live Website
 
-## Contact details used
+https://decidewiseai.me
 
-- Founder: Rishabh Athiya
-- Email: founder@decidewiseai.me
-- Mobile: +91 90395 59323
+## What DecideWise AI Solves
 
-## Important form behavior
+Meetings often produce important decisions, but the reasoning behind those decisions is not always documented clearly. Teams may lose track of assumptions, risks, alternatives, responsibilities, and follow-up actions.
 
-GitHub Pages is static hosting, so it cannot receive form submissions by itself. The lead form currently works by preparing an email request and copying the request as fallback. If you want direct form submission without email, create a Formspree endpoint and paste it into this line in `index.html`:
+DecideWise AI is designed to help teams answer:
 
-```js
-const LEAD_ENDPOINT='';
-```
+- What decision was made?
+- Why was it made?
+- What assumptions were used?
+- What risks were missed?
+- What alternatives were available?
+- Who owns the next action?
+- How can the decision be improved?
 
-Example:
+## Core Features
 
-```js
-const LEAD_ENDPOINT='https://formspree.io/f/your_form_id';
-```
+- AI meeting summary
+- Decision extraction
+- Rationale analysis
+- Agenda drift detection
+- Risk and assumption identification
+- Alternative decision suggestions
+- Action item tracking
+- Secure early-access, demo, and founder-contact request flow through Zoho Forms
 
-## Local preview
+## Relevant Use Cases
 
-Open `index.html` directly in your browser, or run:
+- Research lab and PhD supervision meetings
+- Startup strategy meetings
+- Product and engineering reviews
+- Client and consulting calls
+- Education and institutional meetings
+- Cybersecurity incident reviews
+- Healthcare operations discussions
+- Legal, compliance, and governance reviews
 
-```bash
-python -m http.server 8000
-```
+## Lead and Contact Flow
 
-Then visit `http://localhost:8000`.
+The website includes connected Zoho Forms for:
 
+- Early access requests
+- Demo requests
+- Founder contact requests
 
-## Latest interaction updates
+Business contact:
 
-- **Request Early Access** opens a professional early-access form/modal.
-- **Book an Early Demo** opens a demo-request form/modal.
-- **Contact Founder** opens a contact form/modal instead of triggering the phone dialer.
-- Mobile number actions copy the number instead of auto-opening `tel:` links, preventing blocked-content browser errors.
-- The site is ready for Zoho Forms. See `ZOHO_FORMS_SETUP.md` for where to paste your Zoho Form URLs.
+**Rishabh Athiya**  
+Founder, DecideWise AI  
+Email: founder@decidewiseai.me  
+Website: https://decidewiseai.me
+
+## Status
+
+DecideWise AI is in early-stage development and is preparing for early-access users, product validation, and startup program applications.

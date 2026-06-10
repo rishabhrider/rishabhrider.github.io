@@ -1,68 +1,35 @@
 # Zoho Forms setup for DecideWise AI
 
-The website is ready for Zoho Forms, but the real Zoho form URLs must be created inside your Zoho account and pasted into `index.html`.
+The DecideWise AI website is now connected to Zoho Forms for lead capture.
 
-## Recommended forms to create
+## Connected forms
 
-Create these three forms in Zoho Forms:
+The following Zoho Form public/permalink URLs are configured inside `index.html`:
 
-1. **DecideWise AI — Early Access Request**
-   - Name
-   - Email
-   - Organization / Team
-   - Primary use case
-   - Message / What do you want to test?
+```js
+const ZOHO_FORMS = {
+  'early-access': 'https://forms.zohopublic.com/rkohbk619rkgm1/form/DecideWiseAIEarlyAccessRequest/formperma/LBDgBfaEB6Qtia0kJGZxP0Ll16FMryO1j1rw79ZtpPI',
+  demo: 'https://forms.zohopublic.com/rkohbk619rkgm1/form/DecideWiseAIDemoRequest/formperma/43gMk-cqFwWcTrkUR3WGXJMKMsvK4mg6TqLFGS96zl4',
+  contact: 'https://forms.zohopublic.com/rkohbk619rkgm1/form/DecideWiseAIContactFounder/formperma/gkuhRPozVbz0Qp0gdrFaE7VMTE-H8X7cTl9pZfg14_Q'
+};
+```
 
-2. **DecideWise AI — Demo Request**
-   - Name
-   - Email
-   - Organization / Team
-   - Primary use case
-   - Preferred demo date/time
-   - Message
+## Button behavior
 
-3. **DecideWise AI — Contact Founder**
-   - Name
-   - Email
-   - Organization / Team
-   - Reason for contact
-   - Message
+- **Request Early Access** opens the early-access Zoho Form inside the website modal.
+- **Book an Early Demo** opens the demo-request Zoho Form inside the website modal.
+- **Contact Founder** opens the founder-contact Zoho Form inside the website modal.
+- Each modal also includes a direct link to open the secure Zoho Form in a new tab if iframe embedding is blocked by the browser.
+- The mobile number action copies the number instead of auto-opening the phone dialer, preventing blocked-content browser errors.
 
-Set email notifications to:
+## Notifications
+
+In Zoho Forms, keep email notifications enabled for:
 
 ```text
 founder@decidewiseai.me
 ```
 
-## Where to paste Zoho form links
+## GitHub Pages note
 
-Open `index.html` and find this block:
-
-```js
-const ZOHO_FORMS = {
-  'early-access': '',
-  demo: '',
-  contact: ''
-};
-```
-
-Replace it with your Zoho public/permalink URLs:
-
-```js
-const ZOHO_FORMS = {
-  'early-access': 'https://forms.zohopublic.in/YOUR_ORG/form/EarlyAccess/formperma/YOUR_ID',
-  demo: 'https://forms.zohopublic.in/YOUR_ORG/form/DemoRequest/formperma/YOUR_ID',
-  contact: 'https://forms.zohopublic.in/YOUR_ORG/form/ContactFounder/formperma/YOUR_ID'
-};
-```
-
-## Current fallback behavior
-
-Until you paste the Zoho URLs, the website opens a professional modal form and prepares an email request to `founder@decidewiseai.me`. This prevents broken buttons and keeps the site usable.
-
-## Button behavior
-
-- **Request Early Access** opens the early-access form/modal.
-- **Book an Early Demo** opens the demo form/modal.
-- **Contact Founder** opens the contact form/modal.
-- The site no longer auto-opens the phone dialer, so it avoids blocked-content errors.
+GitHub Pages is static hosting. Zoho Forms handles the actual form submissions externally, so no backend server is required for the current landing page.

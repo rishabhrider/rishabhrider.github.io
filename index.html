@@ -490,6 +490,8 @@
     .zoho-embed-wrap { display: none; margin-top: 20px; border: 1px solid var(--line); border-radius: 22px; overflow: hidden; background: rgba(255,255,255,.04); }
     .zoho-embed-wrap.active { display: block; }
     .zoho-embed-wrap iframe { width: 100%; min-height: 650px; border: 0; background: #fff; display: block; }
+    .zoho-fallback { padding: 12px 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; background: rgba(2,6,23,.88); }
+    .zoho-fallback a { color: var(--brand); font-weight: 800; }
     .form-status {
       display: none;
       padding: 12px 14px;
@@ -1079,7 +1081,7 @@
       <div class="container">
         <div class="section-head">
           <h2>Start with early access, a product demo, or a founder conversation.</h2>
-          <p>Choose the right request type. The website is ready for Zoho Forms integration, and until your Zoho form links are connected it uses a safe email fallback.</p>
+          <p>Choose the right request type. The website is connected to Zoho Forms for early-access, demo, and founder-contact requests, with safe email/copy fallbacks available if needed.</p>
         </div>
         <div class="grid-3">
           <article class="card">
@@ -1139,6 +1141,7 @@
       <p id="modalDescription">Share your details and we will prepare a message to the founder.</p>
       <div id="zohoEmbedWrap" class="zoho-embed-wrap" aria-label="Zoho form embed">
         <iframe id="zohoFormFrame" title="DecideWise AI form" loading="lazy"></iframe>
+        <div class="zoho-fallback">If the embedded form does not load, <a id="zohoDirectLink" href="#" target="_blank" rel="noopener">open the secure Zoho Form in a new tab</a>.</div>
       </div>
 
       <form id="leadForm" class="lead-form">
@@ -1177,7 +1180,7 @@
           <label for="leadMessage">Message / preferred demo time</label>
           <textarea id="leadMessage" name="message" placeholder="Tell us what you want to test, or mention a preferred day/time for a demo."></textarea>
         </div>
-        <p class="form-help">If your Zoho Form URL is configured, this request opens/submits through Zoho Forms. Until then, the website prepares an email fallback and copies the request details.</p>
+        <p class="form-help">This request is connected to the official DecideWise AI Zoho Forms workflow. Email and copy fallbacks remain available for compatibility.</p>
         <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
         <div class="form-actions">
           <button class="btn btn-primary" type="submit" id="leadSubmit">Continue with Email</button>
@@ -1206,17 +1209,11 @@
     const founderEmail = 'founder@decidewiseai.me';
     const founderPhoneDisplay = '+91 90395 59323';
 
-    /*
-      Paste your Zoho Forms public/permalink URLs below after creating the forms in Zoho Forms.
-      Example:
-      earlyAccess: 'https://forms.zohopublic.in/your-org/form/EarlyAccess/formperma/abc123',
-      demo: 'https://forms.zohopublic.in/your-org/form/BookDemo/formperma/abc123',
-      contact: 'https://forms.zohopublic.in/your-org/form/ContactFounder/formperma/abc123'
-    */
+    // Zoho Forms public/permalink URLs connected for DecideWise AI lead capture.
     const ZOHO_FORMS = {
-      'early-access': '',
-      demo: '',
-      contact: ''
+      'early-access': 'https://forms.zohopublic.com/rkohbk619rkgm1/form/DecideWiseAIEarlyAccessRequest/formperma/LBDgBfaEB6Qtia0kJGZxP0Ll16FMryO1j1rw79ZtpPI',
+      demo: 'https://forms.zohopublic.com/rkohbk619rkgm1/form/DecideWiseAIDemoRequest/formperma/43gMk-cqFwWcTrkUR3WGXJMKMsvK4mg6TqLFGS96zl4',
+      contact: 'https://forms.zohopublic.com/rkohbk619rkgm1/form/DecideWiseAIContactFounder/formperma/gkuhRPozVbz0Qp0gdrFaE7VMTE-H8X7cTl9pZfg14_Q'
     };
 
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -1266,6 +1263,7 @@
     const directEmailLink = document.getElementById('directEmailLink');
     const zohoEmbedWrap = document.getElementById('zohoEmbedWrap');
     const zohoFormFrame = document.getElementById('zohoFormFrame');
+    const zohoDirectLink = document.getElementById('zohoDirectLink');
     const formStatus = document.getElementById('formStatus');
     const toast = document.getElementById('toast');
     let toastTimer = null;
@@ -1293,10 +1291,12 @@
         leadForm.style.display = 'none';
         zohoEmbedWrap.classList.add('active');
         zohoFormFrame.src = zohoUrl;
-        modalDescription.textContent = cfg.description + ' Complete the secure Zoho Form below.';
+        zohoDirectLink.href = zohoUrl;
+        modalDescription.textContent = cfg.description + ' Complete the secure DecideWise AI Zoho Form below.';
       } else {
         zohoEmbedWrap.classList.remove('active');
         zohoFormFrame.src = 'about:blank';
+        zohoDirectLink.href = '#';
         leadForm.style.display = 'grid';
         formStatus.classList.add('show');
         formStatus.textContent = 'Zoho Form URL is not connected yet. This fallback form will prepare an email request to the founder.';
@@ -1314,6 +1314,7 @@
       modal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
       zohoFormFrame.src = 'about:blank';
+      zohoDirectLink.href = '#';
     }
 
     function buildEmailBody() {
